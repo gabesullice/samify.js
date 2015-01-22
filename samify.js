@@ -2,7 +2,8 @@
   "use strict";
 
   $.fn.samify = function (options) {
-    var base = $(this);
+    var base = this;
+    var $win = $(window);
 
     // Apply default settings overrides
     var settings = $.extend({
@@ -11,9 +12,21 @@
       'vshrink' : false, // Shrink each row, ignores height
       'hshrink' : false, // Shrink each column, ignores width
       'cols'    : 0,     // Either a fixed number or a function returning a number of columns (useful for breakpoints)
+      'resize'  : false, // Whether or not to recalculate on window resize
+      'throttle': 250,   // Throttle delay for resize
     }, settings, options);
 
     // Entry point
+    this.init = function () {
+      if (settings.resize) {
+        $win.resize(throttle(function () {
+          reset();
+          base.calculate();
+        }, settings.throttle));
+      }
+      this.calculate();
+    }
+
     this.calculate = function () {
       // Get slices, if any
       var slices = slice();
@@ -53,6 +66,10 @@
         if (settings.height) equalize(base, 'height');
         if (settings.width) equalize(base, 'width');
       }
+    }
+
+    function reset () {
+      base.height('auto');
     }
 
     // Equalizes the given slices property (Either 'height' or 'width')
@@ -119,7 +136,7 @@
     // Gets the current number of colums
     function getNumCols () {
       if (typeof settings.cols === 'function') {
-        return settings.cols();
+        return settings.cols($win.width());
       }
       else if (typeof settings.cols === 'number') {
         return settings.cols;
@@ -129,8 +146,33 @@
       }
     };
 
+    // Throttle function by Remy Sharp.
+    // https://remysharp.com/2010/07/21/throttling-function-calls
+    function throttle(fn, threshhold, scope) {
+      threshhold || (threshhold = 250);
+      var last,
+      deferTimer;
+      return function () {
+        var context = scope || this;
+
+        var now = +new Date,
+        args = arguments;
+        if (last && now < last + threshhold) {
+          // hold on to it
+          clearTimeout(deferTimer);
+          deferTimer = setTimeout(function () {
+            last = now;
+            fn.apply(context, args);
+          }, threshhold);
+        } else {
+          last = now;
+          fn.apply(context, args);
+        }
+      };
+    }
+
     // Start equalizing
-    this.calculate();
+    this.init();
     return this;
   };
 
