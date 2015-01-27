@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Samify.js : The flexible jQuery equalizer">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <title>Samify.js</title>
+    <title>Samify.js by gabesullice</title>
   </head>
 
   <body>
+    <header>
+      <div class="inner">
+        <h1>Samify.js</h1>
+        <h2>The flexible jQuery equalizer</h2>
+        <a href="https://github.com/gabesullice/samify.js" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/gabesullice/samify.js">View on GitHub</a>
-
-          <h1 id="project_title">Samify.js</h1>
-          <h2 id="project_tagline">The flexible jQuery equalizer</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/gabesullice/samify.js/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/gabesullice/samify.js/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
 <a id="responsive-flexible-table-like-layouts" class="anchor" href="#responsive-flexible-table-like-layouts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Responsive, flexible table-like layouts</h3>
 
 <p>Samify.js is a dead simple, lightweight jQuery plugin that allows you to create responsive, flexible, table-like layouts. Whether it's equal height, equal width, both or even equalized by each row and column (table-like), samify.js lets you quickly create equalized DOM elements. It's simple:</p>
@@ -80,7 +77,8 @@ This overrides the <code>height</code> option. This will equalize each row to th
 Same as <code>vshrink</code>, but equalizes by column.</p>
 
 <h5>
-<a id="cols" class="anchor" href="#cols" aria-hidden="true"><span class="octicon octicon-link"></span></a>cols</h5>
+<a id="cols" class="anchor" href="#cols" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>cols</code>
+</h5>
 
 <p>Default: <code>0</code>
 This can be either a <code>number</code> or a <code>function</code>. If a number, the number of columns will always remain fixed. If a function, the number of columns can be dynamic and recalculated on resize. The function takes on parameter, the window width. Note: You must also set <code>resize</code> to <code>true</code> for the function to recalculate on resize, it will be called only once otherwise.</p>
@@ -93,28 +91,37 @@ This can be either a <code>number</code> or a <code>function</code>. If a number
 });</pre></div>
 
 <h5>
-<a id="resize" class="anchor" href="#resize" aria-hidden="true"><span class="octicon octicon-link"></span></a>resize</h5>
+<a id="resize" class="anchor" href="#resize" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>resize</code>
+</h5>
 
 <p>Default: <code>false</code>
 Whether or not to bind to window resize and recalculate sizes and columns on resize.</p>
 
 <h5>
-<a id="throttle" class="anchor" href="#throttle" aria-hidden="true"><span class="octicon octicon-link"></span></a>throttle</h5>
+<a id="throttle" class="anchor" href="#throttle" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>throttle</code>
+</h5>
 
 <p>Default: <code>250</code>
 The delay in ms that the grid will be resized on window resize.</p>
-      </section>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/gabesullice/samify.js/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/gabesullice/samify.js/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/gabesullice/samify.js"></a> is maintained by <a href="https://github.com/gabesullice">gabesullice</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Samify.js maintained by <a href="https://github.com/gabesullice">gabesullice</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
+  
   </body>
 </html>
