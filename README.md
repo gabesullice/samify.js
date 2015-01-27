@@ -2,4 +2,6 @@
 
 ### The flexible jQuery equalizer
 
-This simple plugin allows you to equalize all elements in a jQuery object by height and/or width. You can also configure it to shrink down rows or columns to the size of their largest element. Finally, it is possible to configure breakpoints redefining the number of columns in your set.
+Samify.js is a dead simple, lightweight jQuery plugin that allows you to create responsive, flexible, table-like layouts. Whether it's equal height, equal width, both or even equalized by each row and column (table-like), samify.js lets you quickly create equalized DOM elements.
+
+Its homepage with documentation can be found [here](https://gabsullice.github.io/samify.js).
