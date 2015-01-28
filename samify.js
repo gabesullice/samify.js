@@ -4,6 +4,7 @@
   $.fn.samify = function (options) {
     var base = this;
     var $win = $(window);
+    var slices, numCols;
 
     // Apply default settings overrides
     var settings = $.extend({
@@ -25,46 +26,47 @@
         }, settings.throttle));
       }
       this.calculate();
+      this.addClass('samified');
     }
 
     this.calculate = function () {
       // Get slices, if any
-      var slices = slice();
-      if (slices) {
-        process(slices);
-      }
-      // If there were no slices, just process all
-      else {
-        process();
+      var cols = getNumCols();
+      switch (cols) {
+        case 0:
+          if (settings.height) equalize(base, 'height');
+          if (settings.width) equalize(base, 'width');
+          break;
+        case 1:
+          reset();
+          break;
+        default:
+          if (numCols != cols) {
+            numCols = cols;
+            slices = slice();
+          }
+          process();
       }
     };
 
-    function process (slices) {
-      // If we have slices, process by row and column
-      if (slices) {
-        // First rows, then cols
-        for (var direction in slices) {
-          // Each row or col as a slice
-          for (var key in slices[direction]) {
-            var slice = slices[direction][key];
-            var prop;
-            switch (direction) {
-              case 'rows':
-                prop = 'height';
-                break;
-              case 'cols':
-                prop = 'width';
-                break;
-            }
-            // Equalize row or col by height or width
-            equalize(slice, prop)
+    function process () {
+      // Process rows, then cols
+      for (var direction in slices) {
+        // Each row or col as a slice
+        for (var key in slices[direction]) {
+          var slice = slices[direction][key];
+          var prop;
+          switch (direction) {
+            case 'rows':
+              prop = 'height';
+              break;
+            case 'cols':
+              prop = 'width';
+              break;
           }
+          // Equalize row or col by height or width
+          equalize(slice, prop)
         }
-      }
-      else {
-        // Else, equalize all by property
-        if (settings.height) equalize(base, 'height');
-        if (settings.width) equalize(base, 'width');
       }
     }
 
@@ -107,22 +109,20 @@
 
     // Returns an array of objects corresponding to each row
     function getRows () {
-      var cols = getNumCols();
-      var start = 0, end = cols;
+      var start = 0, end = numCols;
       var rows = [];
       while (end <= base.length) {
         rows.push(base.slice(start, end));
-        start += cols;
-        end += cols;
+        start += numCols;
+        end += numCols;
       }
-      var remainder = base.length % cols;
+      var remainder = base.length % numCols;
       if (remainder > 0) rows.push(base.slice(-remainder));
       return rows;
     };
 
     // Returns an array of objects corresponding to each column
     function getCols () {
-      var numCols = getNumCols();
       var col = 1;
       var cols = [];
       while (col <= numCols) {
