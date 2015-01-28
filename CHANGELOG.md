@@ -2,7 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased][unreleased]
-No current unreleased changes
+### Fixed
+- Change log hyperlinks
 
 ## [0.1.1] - 2015-01-28
 ### Changed
@@ -16,5 +17,5 @@ columns changes rather than on each resize.
 ### Added
 - Initial release. All features added.
 
-[unreleased]: https://github.com/codeschool/rapporteur/compare/0.1.1...HEAD
-[0.1.1]: https://github.com/olivierlacan/keep-a-changelog/compare/0.1.0...0.1.1
+[unreleased]: https://github.com/gabesullice/samify.js/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/gabesullice/samify.js/compare/0.1.0...0.1.1
